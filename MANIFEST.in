@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include thirvu_bpm_biometric *.css
+recursive-include thirvu_bpm_biometric *.csv
+recursive-include thirvu_bpm_biometric *.html
+recursive-include thirvu_bpm_biometric *.ico
+recursive-include thirvu_bpm_biometric *.js
+recursive-include thirvu_bpm_biometric *.json
+recursive-include thirvu_bpm_biometric *.md
+recursive-include thirvu_bpm_biometric *.png
+recursive-include thirvu_bpm_biometric *.py
+recursive-include thirvu_bpm_biometric *.svg
+recursive-include thirvu_bpm_biometric *.txt
+recursive-exclude thirvu_bpm_biometric *.pyc
