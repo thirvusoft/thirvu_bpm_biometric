@@ -106,23 +106,23 @@ app_license = "MIT"
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-#	"all": [
-#		"thirvu_bpm_biometric.tasks.all"
-#	],
-#	"daily": [
-#		"thirvu_bpm_biometric.tasks.daily"
-#	],
-#	"hourly": [
-#		"thirvu_bpm_biometric.tasks.hourly"
-#	],
-#	"weekly": [
-#		"thirvu_bpm_biometric.tasks.weekly"
-#	]
-#	"monthly": [
-#		"thirvu_bpm_biometric.tasks.monthly"
-#	]
-# }
+scheduler_events = {
+	# "all": [
+	# 	"thirvu_bpm_biometric.tasks.all"
+	# ],
+	# "daily": [
+	# 	"thirvu_bpm_biometric.tasks.daily"
+	# ],
+	# "hourly": [
+	# 	"thirvu_bpm_biometric.tasks.hourly"
+	# ],
+	# "weekly": [
+	# 	"thirvu_bpm_biometric.tasks.weekly"
+	# ]
+	"all": [
+		"thirvu_bpm_biometric.custom.py.biometric.run_biometric"
+	]
+}
 
 # Testing
 # -------
