@@ -40,13 +40,14 @@
   {
    "fieldname": "last_updated_time",
    "fieldtype": "Datetime",
-   "label": "Last Sync TIme"
+   "label": "Last Sync TIme",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-02-26 17:44:26.088078",
+ "modified": "2024-02-29 18:09:48.305455",
  "modified_by": "Administrator",
  "module": "Thirvu Bpm Biometric",
  "name": "Biometric Settings",

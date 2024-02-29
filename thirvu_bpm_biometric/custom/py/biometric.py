@@ -36,7 +36,7 @@ def run_biometric():
    
     token = auth_response.get('AuthToken')
     log_response = json.loads(get_attendance_logs(token))
-    log_list = log_response.get('Items')
+    log_list = log_response.get('Items') or []
     
     for log in log_list:
         try:
@@ -56,7 +56,7 @@ def run_biometric():
                 emp_chk.save()
                 # create_biometric_log(log,'Success')
             else:
-                create_biometric_log(log,'Failure',frappe.get_traceback())
+                create_biometric_log(log,'Failure',f"No Employee ID - {frappe.get_value('Employee',{'attendance_device_id':log.get('IDNo')},'name')} Found")
 
         except Exception as e:
             create_biometric_log(log,'Failure',frappe.get_traceback())
