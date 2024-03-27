@@ -44,7 +44,7 @@ def run_biometric():
                 today_date = getdate(log.get('PunchTime'))
                 emp_chk = frappe.new_doc('Employee Checkin')
                 emp_chk.employee = frappe.get_value('Employee',{'attendance_device_id':log.get('IDNo')},'name')
-
+    
                 chkin_list = frappe.get_list('Employee Checkin',{'time':['between',(today_date,today_date)],'employee':frappe.get_value('Employee',{'attendance_device_id':log.get('IDNo')},'name')},['log_type'])
                 if not chkin_list:
                     emp_chk.log_type = 'IN'
@@ -60,7 +60,10 @@ def run_biometric():
 
         except Exception as e:
             create_biometric_log(log,'Failure',frappe.get_traceback())
-
+    
+    for i in frappe.get_all("Shift Type",pluck='name'):
+        time = frappe.get_value('Employee Checkin',{'shift':i},'time',order_by='creation desc')
+        frappe.db.set_value("Shift Type",i,'last_sync_of_checkin',time)
             
     frappe.db.commit()
             
@@ -70,6 +73,7 @@ def get_attendance_logs(token):
     base_url = settings.base_url
     from_time = settings.last_updated_time
     frappe.db.set_single_value('Biometric Settings','last_updated_time',now())
+
     to_time = now()
 
     url = f"{base_url}/api/DeviceRequest/GetAttendanceDataByDateTime?FromDatetime={from_time}&ToDateTime={to_time}"
@@ -93,7 +97,7 @@ def get_attendance_logs(token):
         return '{}'
     
 def create_biometric_log(log,status,traceback):
-    bio_log = frappe.new_doc('Biometric Log')
+    bio_log = frappe.new_doc('Biometric Failure Log')
     bio_log.status = status
     bio_log.id = log.get('IDNo')
     bio_log.time = log.get('PunchTime')

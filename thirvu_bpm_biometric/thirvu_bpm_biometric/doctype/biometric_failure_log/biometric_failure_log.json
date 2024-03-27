@@ -58,7 +58,7 @@
  "modified": "2024-02-29 17:50:49.822798",
  "modified_by": "Administrator",
  "module": "Thirvu Bpm Biometric",
- "name": "Biometric Log",
+ "name": "Biometric Failure Log",
  "owner": "Administrator",
  "permissions": [
   {

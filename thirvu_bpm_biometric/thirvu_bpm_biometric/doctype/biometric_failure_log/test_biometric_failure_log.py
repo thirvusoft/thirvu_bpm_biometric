@@ -4,5 +4,5 @@
 # import frappe
 import unittest
 
-class TestBiometricLog(unittest.TestCase):
+class TestBiometricFailureLog(unittest.TestCase):
 	pass
