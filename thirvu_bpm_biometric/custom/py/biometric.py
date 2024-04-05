@@ -72,7 +72,6 @@ def get_attendance_logs(token):
     settings = get_settings()
     base_url = settings.base_url
     from_time = settings.last_updated_time
-    frappe.db.set_single_value('Biometric Settings','last_updated_time',now())
 
     to_time = now()
 
@@ -87,6 +86,7 @@ def get_attendance_logs(token):
     try:
         response = requests.request("GET", url, headers=headers, data=payload)
         if response.status_code == 200:
+            frappe.db.set_single_value('Biometric Settings','last_updated_time',to_time)
             return response.text
         else:
             frappe.log_error(response.text)
